@@ -3,12 +3,6 @@ import './ProfileCard.css';
 
 interface ProfileCardProps {
   avatarUrl: string;
-  iconUrl?: string;
-  grainUrl?: string;
-  innerGradient?: string;
-  behindGlowEnabled?: boolean;
-  behindGlowColor?: string;
-  behindGlowSize?: string;
   className?: string;
   enableTilt?: boolean;
   enableMobileTilt?: boolean;
@@ -22,8 +16,6 @@ interface ProfileCardProps {
   showUserInfo?: boolean;
   onContactClick?: () => void;
 }
-
-const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
 const ANIMATION_CONFIG = {
   INITIAL_DURATION: 1200,
@@ -39,23 +31,17 @@ const adjust = (v: number, fMin: number, fMax: number, tMin: number, tMax: numbe
   round(tMin + ((tMax - tMin) * (v - fMin)) / (fMax - fMin));
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
-  avatarUrl = '<Placeholder for avatar URL>',
-  iconUrl = '<Placeholder for icon URL>',
-  grainUrl = '<Placeholder for grain URL>',
-  innerGradient,
-  behindGlowEnabled = true,
-  behindGlowColor,
-  behindGlowSize,
+  avatarUrl,
   className = '',
   enableTilt = true,
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
   miniAvatarUrl,
-  name = 'Javi A. Torres',
+  name = 'Amrit Raj',
   title = 'Software Engineer',
-  handle = 'javicodes',
+  handle = 'Yes-Amrit',
   status = 'Online',
-  contactText = 'Contact',
+  contactText = 'Contact Me',
   showUserInfo = true,
   onContactClick
 }) => {
@@ -98,11 +84,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       const properties = {
         '--pointer-x': `${percentX}%`,
         '--pointer-y': `${percentY}%`,
-        '--background-x': `${adjust(percentX, 0, 100, 35, 65)}%`,
-        '--background-y': `${adjust(percentY, 0, 100, 35, 65)}%`,
-        '--pointer-from-center': `${clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1)}`,
-        '--pointer-from-top': `${percentY / 100}`,
-        '--pointer-from-left': `${percentX / 100}`,
         '--rotate-x': `${round(-(centerX / 5))}deg`,
         '--rotate-y': `${round(centerY / 4)}deg`
       } as Record<string, string>;
@@ -312,30 +293,15 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     handleDeviceOrientation
   ]);
 
-  const cardStyle = useMemo(
-    () =>
-      ({
-        '--icon': iconUrl ? `url(${iconUrl})` : 'none',
-        '--grain': grainUrl ? `url(${grainUrl})` : 'none',
-        '--inner-gradient': innerGradient ?? DEFAULT_INNER_GRADIENT,
-        '--behind-glow-color': behindGlowColor ?? 'rgba(125, 190, 255, 0.67)',
-        '--behind-glow-size': behindGlowSize ?? '50%'
-      }) as React.CSSProperties,
-    [iconUrl, grainUrl, innerGradient, behindGlowColor, behindGlowSize]
-  );
-
   const handleContactClick = useCallback(() => {
     onContactClick?.();
   }, [onContactClick]);
 
   return (
-    <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
-      {behindGlowEnabled && <div className="pc-behind" />}
+    <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()}>
       <div ref={shellRef} className="pc-card-shell">
         <section className="pc-card">
           <div className="pc-inside">
-            <div className="pc-shine" />
-            <div className="pc-glare" />
             <div className="pc-content pc-avatar-content">
               <img
                 className="avatar"

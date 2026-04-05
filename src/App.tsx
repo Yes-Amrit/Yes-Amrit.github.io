@@ -263,28 +263,34 @@ function ContactForm() {
     e.preventDefault();
     setStatus("sending");
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
     try {
       const response = await fetch("https://formspree.io/f/mjgpppvy", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(data),
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
       });
 
       if (response.ok) {
         setStatus("sent");
-        formRef.current?.reset();
-        setTimeout(() => setStatus("idle"), 2000);
+        form.reset();
+        setTimeout(() => setStatus("idle"), 3000);
       } else {
+        const errorData = await response.json();
+        console.error("Formspree error:", errorData);
         setStatus("idle");
-        alert("Oops! There was a problem submitting your form");
+        alert(errorData.error || "Oops! There was a problem submitting your form");
       }
     } catch (error) {
+      console.error("Submission error:", error);
       setStatus("idle");
-      alert("Oops! There was a problem submitting your form");
+      alert("Network error. Please try again later.");
     }
   };
 
@@ -1181,7 +1187,7 @@ export default function App() {
                       <motion.span className="text-[10px] uppercase tracking-[0.6em] font-bold text-white/40 block">
                         The Connection
                       </motion.span>
-                      <h2 className="text-4xl md:text-5xl font-curvy font-medium tracking-tight flex flex-col items-center lg:items-start">
+                      <h2 className="text-4xl md:text-7xl font-curvy font-medium tracking-tight flex flex-col items-center lg:items-start">
                         <ScrambledText radius={50} duration={1} speed={0.3} scrambleChars=".:">
                           Contact
                         </ScrambledText>
@@ -1212,17 +1218,17 @@ export default function App() {
                       <ProfileCard
                         name="Amrit Raj"
                         title="Software Engineer"
-                        handle="yes-amrit"
+                        handle="Yes-Amrit"
                         status="Online"
-                        contactText="Say Hello"
+                        contactText="Contact Me"
                         avatarUrl="https://res.cloudinary.com/dhpnzrxsp/image/upload/v1775385110/dp_xdfcet.jpg"
                         showUserInfo
                         enableTilt={true}
                         enableMobileTilt
-                        onContactClick={() => { document.querySelector('form')?.querySelector('input')?.focus() }}
-                        behindGlowColor="hsla(187, 100%, 49%, 0.15)"
-                        behindGlowEnabled
-                        innerGradient="linear-gradient(180deg, rgba(131, 131, 190, 0.03) 0%, rgba(15, 208, 218, 0) 100%)"
+                        onContactClick={() => {
+                          document.querySelector('form')?.querySelector('input')?.focus();
+                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                       />
                     </div>
                   </div>
