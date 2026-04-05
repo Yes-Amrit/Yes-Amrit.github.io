@@ -11,8 +11,9 @@ import Orb from "./components/Orb";
 import LogoLoop from "./components/LogoLoop";
 import DotGrid from "./components/DotGrid";
 import ScrollStack, { ScrollStackItem } from "./components/ScrollStack";
-import Hyperspeed from "./components/Hyperspeed";
+import ShapeGrid from "./components/ShapeGrid";
 import TweetCard from "./components/TweetCard";
+import ProfileCard from "./components/ProfileCard";
 import BorderGlow from "./components/BorderGlow";
 import CircularText from "./components/CircularText";
 import TrueFocus from "./components/TrueFocus";
@@ -211,7 +212,7 @@ const TESTIMONIALS = [
     gender: "girl"
   },
   {
-    name: "Aman V",
+    name: "Dhairya",
     text: "Working with Amrit has always been a great experience. He’s reliable, focused, and consistently delivers on time without compromising quality. What I appreciate most is his ability to break down complex problems into simple, workable solutions. You can count on him when it matters.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aman",
     gender: "boy"
@@ -241,13 +242,13 @@ const TESTIMONIALS = [
     gender: "boy"
   },
   {
-    name: "Shubham",
+    name: "Shivam",
     text: "Dependability is one of Amrit’s strongest qualities. You don’t have to follow up — once he takes ownership, he makes sure things are completed properly and on time.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shubham",
     gender: "boy"
   },
   {
-    name: "Priyansh",
+    name: "Pradhi",
     text: "Working with Amrit is a lesson in consistency. He avoids the fluff and focuses on the impact, letting the quality of the architecture speak for itself.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Priyansh",
     gender: "boy"
@@ -319,7 +320,7 @@ function ContactForm() {
           name="message"
           required
           rows={4}
-          placeholder="Tell me about your project..."
+          placeholder="Send me message..."
           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-white/30 transition-colors resize-none"
         />
       </div>
@@ -415,7 +416,7 @@ export default function App() {
                   transition={{ duration: 0.5, delay: 0.6 }}
                   className="hover:text-white transition-colors duration-300 relative group cursor-target"
                 >
-                  View Resume
+                  Resume
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
                 </motion.a>
               </nav>
@@ -507,7 +508,7 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
-                    className="absolute inset-0 rounded-full border border-white/5 overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] pointer-events-auto cursor-target"
+                    className="absolute inset-0 rounded-full border border-white/8 overflow-hidden shadow-[0_0_60px_rgba(255,255,255,0.02)] pointer-events-auto cursor-target"
                   >
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10" />
 
@@ -593,13 +594,13 @@ export default function App() {
                 transition={{ delay: 2, duration: 1 }}
                 className="absolute left-8 md:left-12 bottom-12 flex flex-col items-center gap-8 cursor-target z-30"
               >
-                <span className="text-[10px] uppercase tracking-[0.4em] font-medium text-white/20 [writing-mode:vertical-lr] rotate-180">
+                <span className="text-[15px] uppercase tracking-[0.4em] font-medium text-white/38 [writing-mode:vertical-lr] rotate-180">
                   Scroll Down
                 </span>
                 <div className="relative w-[1px] h-24 bg-white/5 overflow-hidden">
                   <motion.div
                     animate={{ y: ["-100%", "100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
                     className="absolute top-0 left-0 w-full h-1/2 bg-white"
                   />
                 </div>
@@ -608,7 +609,7 @@ export default function App() {
               {/* Bottom Elements */}
               <div className="absolute bottom-8 left-0 w-full px-12 flex justify-between items-end pointer-events-none">
                 <div className="hidden md:block">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/5">
+                  <span className="text-[20px] uppercase tracking-[0.2em] font-medium text-white/15">
                     Series 01 / Portfolio
                   </span>
                 </div>
@@ -626,7 +627,7 @@ export default function App() {
             {/* About Section */}
             <section id="about" className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden py-24">
               {/* LightRays Background */}
-              <div className="absolute inset-0 z-0 opacity-30">
+              <div className="absolute inset-0 z-0 opacity-75">
                 <LightRays
                   raysOrigin="top-center"
                   raysColor="#ffffff"
@@ -681,12 +682,13 @@ export default function App() {
                       </p>
                       <div className="mt-8 pt-8 border-t border-white/10 flex justify-between items-center">
                         <span className="text-sm font-italic italic opacity-60">~ Amrit</span>
-                        <motion.button
+                        <motion.a
+                          href="#works"
                           whileHover={{ x: 5 }}
                           className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-white/40 hover:text-white transition-colors"
                         >
                           View Works <ArrowRight size={12} />
-                        </motion.button>
+                        </motion.a>
                       </div>
                     </div>
                   </ElectricBorder>
@@ -950,44 +952,16 @@ export default function App() {
 
             {/* Works Section */}
             <section id="works" className="relative min-h-screen bg-black py-32 overflow-hidden">
-              {/* Hyperspeed Background */}
+              {/* ShapeGrid Background */}
               <div className="absolute inset-0 z-0">
-                <Hyperspeed
-                  effectOptions={{
-                    distortion: 'turbulentDistortion',
-                    length: 400,
-                    roadWidth: 10,
-                    islandWidth: 2,
-                    lanesPerRoad: 4,
-                    fov: 90,
-                    fovSpeedUp: 150,
-                    speedUp: 2,
-                    carLightsFade: 0.4,
-                    totalSideLightSticks: 20,
-                    lightPairsPerRoadWay: 40,
-                    shoulderLinesWidthPercentage: 0.05,
-                    brokenLinesWidthPercentage: 0.1,
-                    brokenLinesLengthPercentage: 0.5,
-                    lightStickWidth: [0.12, 0.5],
-                    lightStickHeight: [1.3, 1.7],
-                    movingAwaySpeed: [60, 80],
-                    movingCloserSpeed: [-120, -160],
-                    carLightsLength: [400 * 0.03, 400 * 0.2],
-                    carLightsRadius: [0.05, 0.14],
-                    carWidthPercentage: [0.3, 0.5],
-                    carShiftX: [-0.8, 0.8],
-                    carFloorSeparation: [0, 5],
-                    colors: {
-                      roadColor: 0x080808,
-                      islandColor: 0x0a0a0a,
-                      background: 0x000000,
-                      shoulderLines: 0xffffff,
-                      brokenLines: 0xffffff,
-                      leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-                      rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-                      sticks: 0x03b3c3
-                    }
-                  }}
+                <ShapeGrid
+                  speed={0.5}
+                  squareSize={40}
+                  direction="diagonal"
+                  borderColor="#290c5a"
+                  hoverFillColor="#201529"
+                  shape="hexagon"
+                  hoverTrailAmount={6}
                 />
               </div>
 
@@ -1189,7 +1163,7 @@ export default function App() {
             {/* Contact Section */}
             <section id="contact" className="relative min-h-screen bg-black flex items-center justify-center py-32 overflow-hidden">
               {/* LaserFlow Background - Positioned specifically around the card */}
-              <div className="absolute inset-0 z-0 opacity-60">
+              <div className="absolute inset-0 z-0 opacity-60 ">
                 <LaserFlow
                   color="#CF9EFF"
                   beamOffset={0.5}
@@ -1198,14 +1172,16 @@ export default function App() {
                 />
               </div>
 
-              <div className="relative z-10 w-full max-w-4xl px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                  <div className="space-y-8">
-                    <div className="text-center space-y-4">
-                      <motion.span className="text-[10px] uppercase tracking-[0.6em] font-bold text-white/40">
+              <div className="relative z-10 w-full max-w-7xl px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+                  {/* Left: Text Content */}
+                  <div className="lg:col-span-3 space-y-4 text-center lg:text-left">
+                    <div className="space-y-2">
+                      <motion.span className="text-[10px] uppercase tracking-[0.6em] font-bold text-white/40 block">
                         The Connection
                       </motion.span>
-                      <h2 className="text-4xl md:text-6xl font-curvy font-medium tracking-tight flex flex-col items-center">
+                      <h2 className="text-4xl md:text-5xl font-curvy font-medium tracking-tight flex flex-col items-center lg:items-start">
                         <ScrambledText radius={50} duration={1} speed={0.3} scrambleChars=".:">
                           Contact
                         </ScrambledText>
@@ -1213,33 +1189,44 @@ export default function App() {
                       </h2>
                     </div>
 
-                    <p className="text-white/40 text-sm leading-relaxed max-w-sm">
+                    <p className="text-white/40 text-sm leading-relaxed max-w-sm mx-auto lg:mx-0">
                       I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
                     </p>
-
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4 group">
-                        <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors">
-                          <Send size={16} className="text-white/40 group-hover:text-white transition-colors" />
-                        </div>
-                        <div>
-                          <p className="text-[10px] uppercase tracking-widest text-white/20">Email Me</p>
-                          <p className="text-sm text-white/60">amugi2712@gmail.com</p>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  <div className="relative">
+                  {/* Middle: Contact Form */}
+                  <div className="lg:col-span-6 relative">
                     <ElectricBorder
                       color="#9e8af0"
                       speed={0.4}
-                      chaos={0.05}
+                      chaos={0.15}
                       borderRadius={24}
                     >
                       <ContactForm />
                     </ElectricBorder>
                   </div>
+
+                  {/* Right: Profile Card */}
+                  <div className="lg:col-span-3 flex justify-center lg:justify-end">
+                    <div className="w-[200px] lg:w-[240px] shrink-0">
+                      <ProfileCard
+                        name="Amrit Raj"
+                        title="Software Engineer"
+                        handle="yes-amrit"
+                        status="Online"
+                        contactText="Say Hello"
+                        avatarUrl="https://res.cloudinary.com/dhpnzrxsp/image/upload/v1775385110/dp_xdfcet.jpg"
+                        showUserInfo
+                        enableTilt={true}
+                        enableMobileTilt
+                        onContactClick={() => { document.querySelector('form')?.querySelector('input')?.focus() }}
+                        behindGlowColor="hsla(187, 100%, 49%, 0.15)"
+                        behindGlowEnabled
+                        innerGradient="linear-gradient(180deg, rgba(131, 131, 190, 0.03) 0%, rgba(15, 208, 218, 0) 100%)"
+                      />
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </section>

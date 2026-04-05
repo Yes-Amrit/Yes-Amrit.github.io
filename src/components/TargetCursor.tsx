@@ -41,7 +41,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
   const moveCursor = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return;
-    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: 'power3.out' });
+    gsap.to(cursorRef.current, { x, y, duration: 0.6, ease: 'expo.out', overwrite: 'auto' });
   }, []);
 
   useEffect(() => {

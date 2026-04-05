@@ -11,6 +11,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
   }
   body {
     @apply bg-black text-white antialiased overflow-x-hidden;
