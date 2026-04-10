@@ -764,13 +764,13 @@ export default function App() {
                               label: 'Education'
                             },
                             {
-                              title: 'DAV Public School (2009 - 2020)',
-                              description: "Primary Education, CBSE\n\nThis is where the obsession started. Before the complex AI and systems, there was just a kid with a laptop, a massive curiosity, and a school desk. I spent these years training my brain to see the world as a series of puzzles—finding the rhythm in Math and the discipline in Sketching.",
+                              title: 'STSV International School (2020 - 2022)',
+                              description: "Sr. Secondary Education, CBSE\n\nThe world went quiet, 2020 to 2022 was my training ground for self-reliance. Without the noise of a typical school day, I treated this period as a deep-sea dive into complexity.",
                               label: 'Education'
                             },
                             {
-                              title: 'STSV Internation School (2020 - 2022)',
-                              description: "Sr. Secondary Education, CBSE\n\nThe world went quiet, 2020 to 2022 was my training ground for self-reliance. Without the noise of a typical school day, I treated this period as a deep-sea dive into complexity.",
+                              title: 'DAV Public School (2009 - 2020)',
+                              description: "Primary Education, CBSE\n\nThis is where the obsession started. Before the complex AI and systems, there was just a kid with a laptop, a massive curiosity, and a school desk. I spent these years training my brain to see the world as a series of puzzles—finding the rhythm in Math and the discipline in Sketching.",
                               label: 'Education'
                             }
                           ]}
@@ -1067,7 +1067,7 @@ export default function App() {
                       colors={['#c084fc', '#f472b6', '#38bdf8']}
                     >
                       <TweetCard
-                        title="Care-Connect-Dashboard"
+                        title="Quick-Care"
                         description="An AI-powered pharmacy help assistant designed to provide quick, accurate medication guidance and health support. Users can check prescriptions, get dosage advice, and manage their health queries. The website also allows easy appointment booking with pharmacists or healthcare professionals, ensuring convenient, personalized consultations."
                         image="https://res.cloudinary.com/dhpnzrxsp/image/upload/v1775370123/Screenshot_2026-04-05_020037_voqdm8.png"
                         liveUrl="https://quick-care-finalproj-kohl.vercel.app/"
@@ -1213,25 +1213,27 @@ export default function App() {
                   </div>
 
                   {/* Right: Profile Card */}
-                  <div className="lg:col-span-3 flex justify-center lg:justify-end">
-                    <div className="w-[200px] lg:w-[240px] shrink-0">
-                      <ProfileCard
-                        name="Amrit Raj"
-                        title="Software Engineer"
-                        handle="Yes-Amrit"
-                        status="Online"
-                        contactText="Contact Me"
-                        avatarUrl="https://res.cloudinary.com/dhpnzrxsp/image/upload/v1775385110/dp_xdfcet.jpg"
-                        showUserInfo
-                        enableTilt={true}
-                        enableMobileTilt
-                        onContactClick={() => {
-                          document.querySelector('form')?.querySelector('input')?.focus();
-                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      />
-                    </div>
-                  </div>
+<div className="lg:col-span-3 flex justify-center lg:justify-end">
+  {/* Reduced width from 120/160 to 100/130 for a sleeker look */}
+  <div className="w-[100px] lg:w-[130px] shrink-0 transition-all duration-300 hover:scale-105">
+    <ProfileCard
+      name="Amrit Raj"
+      title="Software Engineer"
+      handle="Yes-Amrit"
+      status="Online"
+      contactText="Contact"
+      avatarUrl="https://res.cloudinary.com/dhpnzrxsp/image/upload/v1775385110/dp_xdfcet.jpg"
+      showUserInfo
+      enableTilt={true}
+      enableMobileTilt
+      onContactClick={() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        // Small delay to let scroll finish before focusing
+        setTimeout(() => document.querySelector('form')?.querySelector('input')?.focus(), 500);
+      }}
+    />
+  </div>
+</div>
 
                 </div>
               </div>

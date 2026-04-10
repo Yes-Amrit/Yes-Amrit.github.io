@@ -57,7 +57,7 @@
 
 .pc-card {
   height: 80svh;
-  max-height: 490px;
+  max-height: 440px;
   display: grid;
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
@@ -267,7 +267,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(43, 16, 16, 0.1);
   backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)));
